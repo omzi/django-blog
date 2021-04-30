@@ -3,7 +3,6 @@ from .models import Post, Category, Comment
 from ckeditor.fields import RichTextField
 
 
-# choices = [('coding', 'Coding'), ('anime', 'Anime'), ('entertainment', 'Entertainment')]
 choices = [item for item in Category.objects.all().values_list('name', 'name')]
 
 class AddPostForm(forms.ModelForm):
