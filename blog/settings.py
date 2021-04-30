@@ -88,9 +88,15 @@ DATABASES = {
     #     'NAME': BASE_DIR / 'db.sqlite3',
     # },
     # For production
-    'default': env.dj_db_url('DATABASE_URL')
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'dc602vviqjk6nm',
+        'HOST': 'ec2-34-206-8-52.compute-1.amazonaws.com',
+        'PORT': 5432,
+        'USER': 'sbhmmhckxmsxqq',
+        'PASSWORD': '4bcbf74db41f94d0b7d91be5e50a5b4e1cbd7a9641bae3a57cad27bd64e668c7'
+    }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
