@@ -1966,7 +1966,7 @@ footer.v2 {
   margin-bottom: 0; }
 
 .blog-detail.blog-detail-sidebar .blog-detail_sidebar .sidebar-search input {
-  background-image: url("../images/blog_detail/icon_search2.svg");
+  background-image: url("../images/icon-search.svg");
   background-repeat: no-repeat;
   background-position: 95% center;
   background-size: 15px; }
