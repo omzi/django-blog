@@ -1,0 +1,32 @@
+{% extends user.is_staff|yesno:"base.html,partials/403.html" %}
+{% load static %}
+
+{% if user.is_staff %}
+  {% block title %}Add New Category : : Omzi's DevLog{% endblock %}
+
+  {% block content %}
+    <section class="post-crud">
+      <div class="container">
+        <form method="POST">
+          {% csrf_token %}
+          <div class="row">
+            <div class="col-12">
+              <h2 class="action">Add Category...</h2>
+              <hr>
+              <div class="form-wrapper">
+                <div class="form-row">
+                </div>
+                <div class="form-group">
+                  <label for="title">Name</label>
+                  {{form.name}}
+                </div>
+              </div>
+
+              <button class="normal-btn">Create Category</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+  {% endblock %}
+{% endif %}

@@ -1,0 +1,156 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>{% block title %}Omzi's DevLog{% endblock %}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+    <meta name="keywords" content="">
+    <meta name="author" content="Omezibe Obioha">
+    <link rel="stylesheet" href="{% static '' %}css/style.css">
+    <link rel="stylesheet" href="{% static '' %}css/slick.css">
+    <link rel="stylesheet" href="{% static '' %}css/jquery-ui.css">
+    <link rel="stylesheet" href="{% static '' %}css/custom_bootstrap.css">
+    <link rel="stylesheet" href="{% static '' %}fonts/jetbrains-mono.css">
+    <link rel="stylesheet" href="{% static '' %}css/fontawesome.css">
+    <link rel="stylesheet" href="{% static '' %}css/elegant.css">
+    <link rel="stylesheet" href="{% static '' %}css/plyr.css">
+    <link rel="stylesheet" href="{% static '' %}css/aos.css">
+    <link rel="stylesheet" href="{% static '' %}css/animate.css">
+    <link rel="stylesheet" href="{% static '' %}css/themify-icons.css">
+    
+    <link rel="shortcut icon" href="{% static '' %}favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static '' %}images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static '' %}images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static '' %}images/favicon-16x16.png">
+    <link rel="manifest" href="{% static '' %}site.webmanifest">
+    <link rel="mask-icon" href="{% static '' %}images/safari-pinned-tab.svg" color="#603cba">
+    <meta name="apple-mobile-web-app-title" content="Omzi's Devlog">
+    <meta name="application-name" content="Omzi's Devlog">
+    <meta name="msapplication-TileColor" content="#603cba">
+    <meta name="theme-color" content="#ffffff">
+  </head>
+  <body>
+    {% include 'partials/messages.html' %}
+    <div id="main">
+      <header>
+        <div class="header-wrapper">
+          <div class="container">
+            <div class="header-menu">
+              <div class="row no-gutters align-items-center justify-content-center">
+                <div class="col-4 col-md-2"><a class="logo" href="{% url 'home' %}"><img src="{% static '' %}images/logo.png" alt="logo"></a></div>
+                <div class="col-8 col-md-8">
+                  <div class="mobile-menu"><a href="#" id="showMenu"><i class="fas fa-bars"></i></a></div>
+                  <nav class="navigation">
+                    <ul>
+                      <li class="nav-item"><a class="pisen-nav-link" href="{% url 'home' %}">Home</a></i></li>
+                      {% if categories %}
+                      <li class="nav-item"><a class="pisen-nav-link" href="javascript:;">Categories</a><i class="submenu-opener fas fa-plus"></i>
+                        <ul class="sub-menu">
+                          {% for category in categories %}
+                          <li class="sub-menu_item"><a class="sub-menu-link" href="{% url 'category' category|slugify %}">{{ category|capfirst }}</a></li>
+                          {% endfor %}
+                        </ul>
+                      </li>
+                      {% endif %}
+                      <li class="nav-item"><a class="pisen-nav-link" href="javascript:;">My Account</a><i class="submenu-opener fas fa-plus"></i>
+                        <ul class="sub-menu">
+                          {% if user.is_authenticated %}
+                            <li class="sub-menu_item"><a class="sub-menu-link" href="javascript:;">View Profile</a></li>
+                            <li class="sub-menu_item"><a class="sub-menu-link" href="{% url 'edit-profile' %}">Edit Profile</a></li>
+                            <li class="sub-menu_item"><a class="sub-menu-link" href="{% url 'change-password' %}">Change Password</a></li>
+                            <li class="sub-menu_item"><a class="sub-menu-link" href="{% url 'logout' %}">Logout</a></li>                          
+                          {% else %}
+                            <li class="sub-menu_item"><a class="sub-menu-link" href="{% url 'register' %}">Register</a></li>
+                            <li class="sub-menu_item"><a class="sub-menu-link" href="{% url 'login' %}">Login</a></li>
+                          {% endif %}
+                        </ul>
+                      </li>
+                      {% if user.is_staff %}
+                        <li class="nav-item"><a class="pisen-nav-link" href="javascript:;">Post Actions</a><i class="submenu-opener fas fa-plus"></i>
+                          <ul class="sub-menu">
+                            <li class="sub-menu_item"><a class="sub-menu-link" href="{% url 'add-post' %}">
+                              + New Post</a>
+                            </li>
+                            <li class="sub-menu_item"><a class="sub-menu-link" href="{% url 'add-category' %}">
+                              + New Category</a>
+                            </li>
+                          </ul>
+                        </li>
+                      {% endif %}
+                    </ul>
+                  </nav>
+                </div>
+                <div class="col-0 col-xl-2">
+                  <div class="menu-function">
+                    <div id="search"><a class="search-btn" href="javascript:;"><i class="fas fa-search"></i></a></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header><!--End header-->
+      
+      {% block content %}
+
+      {% endblock %}
+
+      <footer>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-4 col-md-6">
+              <div class="footer-links">
+                <h5 class="footer-link--title">Quick Links</h5>
+                <ul>
+                  <li><a class="footer-link" href="javascript:;">Blog</a></li>
+                  <li><a class="footer-link" href="javascript:;">About Me</a></li>
+                  <li><a class="footer-link" href="javascript:;">Contact Me</a></li>
+                  <li><a class="footer-link" href="javascript:;">Portfolio</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+              <div class="footer-contact">
+                <h5 class="footer-link--title">Contact Me</h5>
+                <div class="contact-method">
+                  <p>Enugu, Nigeria</p>
+                  <p>hi@omzi.me</p>
+                </div>
+                <div class="social-contact">
+                  <a class="icon-btn" href="https://www.instagram.com/o_obioha/" target="_blank"><i class="fab fa-instagram"></i></a>
+                  <a class="icon-btn" href="https://twitter.com/o_obioha/" target="_blank"><i class="fab fa-twitter"></i></a>
+                  <a class="icon-btn" href="https://www.linkedin.com/in/omezibe-obioha/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <h5 class="footer-link--title">Subscribe To My Mailing List </h5>
+              <form action="" method="post" class="subscribe-form">
+                {% csrf_token %}
+                <div class="email-form">
+                  <input class="input-form" type="text" placeholder="Enter Your Mail">
+                  <button><i class="fas fa-paper-plane"></i></button>
+                </div>
+                <div class="text-success mb-4">I won't spam you, I promise. Just good stuff</div>
+              </form>
+              <p class="copyright">© 2021, Omzi - Full Stack Developer. All Rights Reserved.</p>
+            </div>
+          </div>
+        </div>
+      </footer><!--End footer-->
+      <script src="{% static '' %}js/jquery-3.4.0.min.js"></script>
+      <script src="{% static '' %}js/jquery-ui.min.js"></script>
+      <script src="{% static '' %}js/slick.min.js"></script>
+      <script src="{% static '' %}js/jquery.scrollUp.min.js"></script>
+      <script src="{% static '' %}js/masonry.pkgd.min.js"></script>
+      <script src="{% static '' %}js/imagesloaded.pkgd.min.js"></script>
+      <script src="{% static '' %}js/main.js"></script>
+      <script>
+        document.querySelector('.subscribe-form').addEventListener('submit', e => {
+          e.preventDefault()
+        })
+      </script>
+    </div>
+  </body>
+</html>

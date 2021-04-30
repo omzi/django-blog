@@ -1,0 +1,106 @@
+{% extends category_posts|yesno:"base.html,partials/404.html" %}
+{% load static %}
+
+
+{% if category_posts %}
+    {% block title %}{{ category }} : : Omzi's DevLog{% endblock %}
+
+    {% block content %}
+        <div class="category">
+            <div class="row">
+                <div class="col-12 col-md-7 col-lg-8 order-md-1">
+                    <div class="category__header">
+                        <div class="category__header__text">
+                            <h5>Category:</h5><a href="#">{{ category }}</a>
+                        </div>
+                        <div class="category__header__filter">
+                            <a class="category__header__filter__item" href="javascript:void(0)" data-layout="grid"><i
+                                    class="fas fa-th"></i></a>
+                            <a class="category__header__filter__item active" href="javascript:void(0)"
+                                data-layout="list"><i class="fas fa-bars"></i></a>
+                        </div>
+                    </div>
+                    <div class="category_content -list">
+                        <div class="row">
+                            {% for post in category_posts %}
+                            <div class="col-12">
+                                <div class="post-card -small -horizontal">
+                                    <a class="card__cover" href="{% url 'post-detail' post.pk %}" tabindex="0">
+                                        <img src="images/posts/1.png"
+                                            alt="Looking for some feedback for this rejected track">
+                                    </a>
+                                    <div class="card__content">
+                                        <h5 class="card__content-category">{{ post.category }}</h5>
+                                        <a class="card__content-title" href="{% url 'post-detail' post.pk %}"
+                                            tabindex="0">{{ post.title }}</a>
+                                        <div class="card__content-info">
+                                            <div class="info__time"><i class="far fa-clock"></i>
+                                                <p>{{ post.date_published|date:'M d, Y' }}</p>
+                                            </div>
+                                            <div class="info__comment"><i class="far fa-comment"></i>
+                                                <p>3</p>
+                                            </div>
+                                        </div>
+                                        <p class="card__content-description"></p>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="pagination">
+                        <ul>
+                            <li class="active"><a href="javascript:void(0)">1</a></li>
+                            <li class="pagination__page-number"><a href="javascript:void(0)">2</a></li>
+                            <li class="pagination__page-number"><a href="javascript:void(0)">3</a></li>
+                            <li><a class="next" href="javascript:void(0)">&gt;</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-12 col-md-5 col-lg-4 order-md-2">
+                    <div class="blog-sidebar">
+                        <div class="blog-sidebar-section -category">
+                            <div class="center-line-title">
+                                <h5>Categories</h5>
+                            </div>
+                            <a class="category -bar " href="blog_category_grid.html">
+                                <div class="category__background"
+                                    style="background-image: url(images/backgrounds/category-1.png)"></div>
+                                <h5 class="title">Design</h5>
+                                <h5 class="quantity">12</h5>
+                            </a>
+                        </div>
+                        <div class="blog-sidebar-section -trending-post">
+                            <div class="center-line-title">
+                                <h5>Trending post</h5>
+                            </div>
+                            <div class="trending-post">
+                                <div class="trending-post_image">
+                                    <div class="rank">1</div><img src="images/backgrounds/trending-post-1.png"
+                                        alt="Shifting to Vegan Diets May Cause Brain Nutrient...">
+                                </div>
+                                <div class="trending-post_content">
+                                    <h5>Illustrator</h5><a href="javascript:;">Shifting to Vegan Diets May Cause Brain
+                                        Nutrient...</a>
+                                    <div class="info__time"><i class="far fa-clock"></i>
+                                        <p>Seb 27, 2019</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Subscription Box -->
+                        <!-- <form class="subcribe-box subcribe-box" action="/" method="POST">
+                            <h5>Subcribe</h5>
+                            <p>Lorem ipsum dolor amet, consectetur adipiscing elit, sed tempor.</p>
+                            <input placeholder="Your email" name="email" type="email"><a class="btn -normal"
+                                href="#">Subcribe</a>
+                        </form> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+{% else %}
+
+
+{% endif %}

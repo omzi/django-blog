@@ -1,0 +1,9 @@
+{% if categories %}
+    <li class="nav-item"><a class="pisen-nav-link" href="javascript:;">Categories</a><i class="submenu-opener fas fa-plus"></i>
+        <ul class="sub-menu">
+            {% for category in categories %}
+            <li class="sub-menu_item"><a class="sub-menu-link" href="{% url 'category' category|slugify %}">{{ category|capfirst }}</a></li>
+            {% endfor %}
+        </ul>
+    </li>
+{% endif %}

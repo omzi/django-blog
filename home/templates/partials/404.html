@@ -1,0 +1,99 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Page Not Found ;(</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  body {
+    background: rgb(38, 29, 69);
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    margin: 0;
+    color: rgb(0, 255, 156);
+    font-family: "Jetbrains Mono", "Courier New", Courier, monospace;
+    font-size: 18px;
+    line-height: 1.5em;
+    cursor: default;
+  }
+
+  .code-area {
+    position: absolute;
+    width: 390px;
+    min-width: 390px;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%)
+  }
+
+  .code-area>span {
+    display: block
+  }
+
+  @media screen and (max-width:320px) {
+    .code-area {
+      font-size: 4.5vw;
+      min-width: auto;
+      width: 95%;
+      margin: auto;
+      padding: 5px;
+      padding-left: 10px;
+      line-height: 6.5vw
+    }
+  }
+
+  .buttons-con .action-link-wrap {
+    margin-top: 40px
+  }
+
+  .buttons-con .action-link-wrap a {
+    background: #68c950;
+    padding: 8px 25px;
+    border-radius: 4px;
+    color: #FFF;
+    font-weight: bold;
+    font-size: 14px;
+    transition: all .3s linear;
+    cursor: pointer;
+    text-decoration: none;
+    margin-right: 10px
+  }
+
+  .buttons-con .action-link-wrap a:hover {
+    background: #5a5c6c;
+    color: #fff
+  }
+</style>
+</head>
+<body>
+  <div class="code-area">
+    <span style="color:#6766b3;font-style:italic">
+      // 404 // Page Not Found!
+    </span>
+    <span>
+      <span style="color: #00b0ff;">
+        if
+      </span>
+      (<span style="color: #d57bff;">!</span><span style="color: #eeffff;">pageExists</span>)
+      <span style="color: #00b0ff;">{</span>
+    </span>
+    <span>
+      <span style="padding-left:15px;color: #00b0ff;">
+        <i style="width:10px;display:inline-block"></i>throw
+      </span>
+      <span style="color: #d57bff;">new</span>
+      Error(<span style="color: #00b0ff;">"You're lost!"</span>);
+      <span style="display:block">}</span>
+    </span>
+    <div class="buttons-con">
+      <div class="action-link-wrap">
+        <a onclick="history.back(-1)" class="link-button link-back-button">Go Back</a><br><br>
+        <a onclick="javascript:window.location.href='/'" class="link-button">Go to Home Page</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

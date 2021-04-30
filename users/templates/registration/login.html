@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login : : Omzi's DevLog</title>
+  <link rel="stylesheet" href="{% static '' %}css/bootstrap-grid.min.css">
+  <link rel="stylesheet" href="{% static '' %}fonts/jetbrains-mono.css">
+  <link href="{% static '' %}css/matter.min.css" rel="stylesheet">
+  <link href="{% static '' %}css/auth.css" rel="stylesheet">
+</head>
+<body class="bootstrap-wrapper" style="background: url('{% static '' %}images/background.jpg'); background-size: cover; background-attachment: fixed;">
+  <div class="row">
+    <div class="col-lg-4 offset-lg-4 col-md-8 offset-md-2 col-sm-12">
+      <form class="authform" method="POST">
+        {% csrf_token %}
+        <div class="text-center">
+          <img src="{% static '' %}images/logo.png" alt="Logo">
+        </div>
+        <p class="form-header">Sign in to your account to access your favorite content!</p>
+        
+        {% for field in form.visible_fields %}
+        <label class="matter-textfield-outlined" for="{{ field.id_for_label }}">
+          {{ field }}
+          <span>{{ field.label }}</span>
+        </label>
+          {% for error in field.errors %}
+            <small class="error">{{ error }}</small>
+          {% endfor %}
+        {% endfor %}
+
+        <label class="matter-checkbox">
+          <input type="checkbox">
+          <span>Remember me</span>
+        </label>
+
+        <button class="matter-button-contained" type="submit">Sign In</button>
+      </form>
+
+      <hr>
+      <div class="text-center">
+        <p>Don't have an account? <a href="{% url 'register' %}">Sign Up</a>!</p>
+        <p>Forgot your password? <a href="{% url 'password_reset' %}">Reset It</a></p>
+        <a class="matter-button-contained home" href="{% url 'home' %}">Home</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

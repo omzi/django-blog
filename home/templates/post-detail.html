@@ -1,0 +1,151 @@
+{% extends 'base.html' %}
+{% block title %}{{ post.title }} : : Omzi's DevLog{% endblock %}
+{% load static %}
+
+{% block content %}
+
+    <section class="blog-detail">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-12 col-lg-10">
+            <div class="post-block">
+              <h1 class="blog-detail-title">{{ post.title }}</h1>
+              <div class="blog-credit">
+                <div class="blog-credit_wrapper">
+                  <i class="far fa-user"></i>
+                  <p>{{ post.author.first_name }} {{ post.author.last_name }}</p>
+                  &nbsp;/&nbsp;
+                  <i class="far fa-clock"></i>
+                  <p>{{ post.date_published|date:'d M, Y' }}</p>
+                  &nbsp;/&nbsp;
+                  <i class="far fa-comment"></i>
+                  <p>{{ object.number_of_comments }}</p>
+                  {% if user.is_authenticated %}
+                    {% if user.id == post.author.id %}
+                      <br>
+                      <a href="{% url 'edit-post' post.pk %}">
+                        <i class="far fa-edit"></i>
+                        <p>Edit</p>
+                      </a>
+                      &nbsp;<p><b>|</b></p>&nbsp;
+                      <a href="{% url 'delete-post' post.pk %}">
+                        <i class="far fa-trash-alt"></i>
+                        <p>Delete</p>
+                      </a>
+                    {% endif %}
+                  {% endif %}
+                </div>
+              </div>
+              <div class="text-center mb-2">
+                {% if post.featured_image %}
+                  <img class="blog-cover img-fluid" src="{{ post.featured_image.url }}" alt="post image">
+                {% else %}
+                  <img class="blog-cover img-fluid" src="{% static '' %}images/image-placeholder.jpg" alt="post image">
+                {% endif %}
+              </div>
+              <div class="blog-content mb-2">
+                <p class="blog-pragraph">
+                  {{ post.body|safe }}
+                </p>
+              </div>
+            <div class="post-footer mt-4">
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="post-tags">
+                    CATEGORY: <a href="{% url 'category' post.category|slugify %}">#{{ post.category }}</a>
+                </div>
+                <div class="col-sm-6 text-sm-right">
+                  <div class="post-share">
+                    <p>Share: </p>
+                    <div class="socials"><a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a><a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a><a href="https://twitter.com/"><i class="fab fa-twitter"></i></a><a href="https://dribbble.com/"><i class="fab fa-dribbble"></i></a></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Previous & Next Posts Markup -->
+            <!-- <div class="another-posts mt-4"><a class="arrow-control arrow-prev" href="blog_detail.html"><i class="arrow_left"></i></a><a class="arrow-control arrow-next" href="blog_detail.html"><i class="arrow_right"></i></a>
+              <div class="row no-gutters">
+                <div class="col-12 col-md-6"><a href=""></a>
+                  <div class="another-post_block prev-post">
+                    <div class="post-mini-img text-left"><a href="blog_detail.html"><img src="{% static '' %}images/blog_detail/post-mini-img-1.png" alt="post image"></a></div>
+                    <div class="post-title">
+                      <p>Previous post</p><a href="blog_detail.html">The Personality Trait That Makes People Happier</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6">
+                  <div class="another-post_block text-right next-post">
+                    <div class="post-title">
+                      <p>Next post</p><a href="blog_detail.html">The Personality Trait That Makes People Happier</a>
+                    </div>
+                    <div class="post-mini-img text-right"><a href="blog_detail.html"><img src="{% static '' %}images/blog_detail/post-mini-img-2.png" alt="post image"></a></div>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+            
+            <div class="post-author-detail mt-4">
+              <div class="row no-gutters align-items-center">
+                <div class="col-sm-5 col-md-3">
+                  <div class="author-avatar"><img src="https://pbs.twimg.com/profile_images/1366805399685496841/rb0Sp1Tn_400x400.jpg" alt="avatar"></div>
+                </div>
+                <div class="col-sm-7 col-md-9">
+                  <div class="author-info">
+                    <h5>Omezibe Obioha</h5>
+                    <p>I'm a passionate Full Stack JavaScript Developer from Nigeria with an eye for aesthetically-pleasing UI designs & a knack for bringing them to life. I love learning new things.</p>
+                    <div class="social-contact">
+                      <a class="icon-btn" href="https://www.instagram.com/o_obioha/" target="_blank"><i class="fab fa-instagram"></i></a>
+                      <a class="icon-btn" href="https://twitter.com/o_obioha/" target="_blank"><i class="fab fa-twitter"></i></a>
+                      <a class="icon-btn" href="https://www.linkedin.com/in/omezibe-obioha/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="blog-comment">
+              <h2>Comments</h2>
+              <hr>
+              {% if not comments %}
+                <h5>No Comments Yet. Be the first to add one</h5>
+              {% else %}
+                <p>{{ object.number_of_comments }} Comment{{ object.number_of_comments|pluralize }}</p>
+                <hr>
+                {% for comment in comments %}
+                  <ul class="comments">
+                    <li class="clearfix">
+                      <img src="https://evatar.io/{{ comment.author }}" class="avatar" alt="">
+                      <div class="post-comments">
+                        <p class="meta">{{ comment.date_added|date:'d M, Y' }} ♦ <a href="javascript:;">{{ comment.author }}</a>
+                          <!-- <i class="pull-right"><a href="#"><small>Reply</small></a></i> -->
+                        </p>
+                        <p>{{ comment.content|safe }}</p>
+                      </div>
+                    </li>
+                  </ul>
+                {% endfor %}
+              {% endif %}
+            </div>
+
+            <hr>
+            <div class="post-comment">
+              <h2>Leave a comment</h2>
+              {% if user.is_authenticated %}
+                <form method="POST">
+                  {% csrf_token %}
+                  <div class="form-group">
+                    {{ comment_form }}
+                  </div>
+                  <button class="normal-btn">Submit</button>
+                </form>
+              {% else %}
+                <p><a href="{% url 'login' %}?next={{request.path}}">Log in</a> to add a comment!</p>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+{% endblock %}

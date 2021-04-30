@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <section class="posts blog-masonry">
+        <div class="container">
+          <div class="blog-masonry_wrapper">
+            {% for post in object_list %}
+
+            <div class="post-block post-classic {% if user.id == post.author.id %}post-editable{% endif %}">
+              <div class="post-img">
+                {% if user.id == post.author.id %}
+                <div class="post-actions">
+                  <a href="{% url 'edit-post' post.pk %}" class="normal-btn">
+                    <i class="fas fa-pencil-alt"></i>&nbsp;
+                    <span>Edit</span>
+                  </a>
+                  <a href="{% url 'delete-post' post.pk %}" class="btn btn-secondary plain-btn">
+                    <i class="far fa-trash-alt"></i>&nbsp;
+                    <span>Delete</span>
+                  </a>
+                </div>
+                {% endif %}
+                {% if post.featured_image %}
+                  <img src="{{ post.featured_image.url }}" alt="post image">
+                {% else %}
+                  <img src="{% static '' %}images/image-placeholder.jpg" alt="post image">
+                {% endif %}
+              </div>
+              <div class="post-detail">
+                <div class="post-credit">
+                    <div class="author">
+                      <img class="author-avatar" src="{% static '' %}images/placeholder.jpg" alt="{{ post.author.first_name }} {{ post.author.last_name }}">
+                      <h5 class="author-name">{{ post.author.first_name }} {{ post.author.last_name }}</h5>
+                    </div>
+                    <h5 class="upload-day">{{ post.date_published|date:'M d, Y' }}</h5>
+                    <div class="post-tag"><a href="{% url 'category' post.category|slugify %}">{{ post.category }}</a></div>
+                </div>
+                <a class="post-title regular" href="{% url 'post-detail' post.pk %}">{{ post.title }}</a>
+              </div>
+            </div>
+
+            {% endfor%}
+          </div>
+          <div class="row">
+            <div class="col-12 text-center">
+              <button class="normal-btn" id="load-more">Load more</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+{% endblock %}
