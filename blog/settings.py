@@ -4,7 +4,6 @@ env.read_env()
 
 
 import os
-import django_heroku
 from pathlib import Path
 from django.contrib.messages import constants as messages
 
@@ -26,9 +25,9 @@ MESSAGE_TAGS = {
 SECRET_KEY = env.str('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env.bool('DEBUG')
+DEBUG = env.bool('DEBUG', default=False)
 
-ALLOWED_HOSTS = ['.herokuapp.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['thatdevlog.herokuapp.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -48,8 +47,8 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -88,8 +87,9 @@ DATABASES = {
     #     'NAME': BASE_DIR / 'db.sqlite3',
     # },
     # For production
-    'default': env.dj_db_url("DATABASE_URL")
+    'default': env.dj_db_url('DATABASE_URL')
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -153,6 +153,3 @@ LOGOUT_REDIRECT_URL = 'home'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-django_heroku.settings(locals())
-del DATABASES['default']['OPTIONS']['sslmode']
