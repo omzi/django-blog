@@ -1,10 +1,10 @@
 from environs import Env
 env = Env()
 env.read_env()
-import django_heroku
 
 
 import os
+import django_heroku
 from pathlib import Path
 from django.contrib.messages import constants as messages
 
