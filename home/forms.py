@@ -1,6 +1,7 @@
 from django import forms
 from .models import Post, Category, Comment
 from ckeditor.fields import RichTextField
+from cloudinary.models import CloudinaryField
 
 
 choices = [item for item in Category.objects.all().values_list('name', 'name')]

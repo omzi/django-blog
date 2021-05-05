@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from datetime import datetime, date
 from ckeditor.fields import RichTextField
+from cloudinary.models import CloudinaryField
 
 
 class Category(models.Model):
@@ -33,7 +34,7 @@ def photo_path(instance, filename):
 class Post(models.Model):
     title = models.CharField(max_length=255, unique=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    featured_image = models.ImageField(null=True, blank=True, upload_to=photo_path)
+    featured_image = CloudinaryField('image')
     summary = models.CharField(max_length=255, default='')
     body = RichTextField(default='')
     date_published = models.DateTimeField(auto_now_add=True)
