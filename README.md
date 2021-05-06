@@ -171,4 +171,4 @@ This project is my submission to one of the tasks in the [Zuri Internship](https
 ## 📄 **License**
 
 This project is licensed under the terms of the
-[GPL v3 license](/LICENSE).
+[MIT license](/LICENSE).
