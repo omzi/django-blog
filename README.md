@@ -2,7 +2,7 @@
   <img src="static/images/logo.png" alt="Omzi's Devlog logo">
 </p></a>
 <blockquote cite="https://thatdevlog.herokuapp.com/">
-<i>A slick mini-blog built on Django✍.</i>
+<i>A slick, minimalist blog powered by Django & PostgreSQL✍.</i>
 </blockquote>
 <br>
 <div>
@@ -11,24 +11,15 @@
 ![](https://img.shields.io/github/forks/omzi/django-blog.svg)
 ![](https://img.shields.io/github/repo-size/omzi/django-blog)
 ![](https://img.shields.io/github/issues/omzi/django-blog.svg)
-[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/omzi/django-blog/issues)
-[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-blue.svg?style=flat)](https://github.com/omzi/django-blog/issues)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 ![](https://img.shields.io/twitter/follow/o_obioha.svg?style=social&label=@o_obioha)
 
 </div>
 
-<h3><a href="https://thatdevlog.herokuapp.com/"><i>Live Demo</i> 🚀</a></h3>
+<h4><a href="https://thatdevlog.herokuapp.com/"><i>Live Demo</i> 🚀</a></h4>
 <br>
 
-## Table of Content
-- [Screenshots](#screenshots)
-- [Features](#features)
-- [Screenshots](#screenshots)
-- [Demo](#demo)
-- [Pending](#pending)
-- [Folder Structure](#folder-structure)
-- [Contribution](#contribution)
-- [License](#license)
 
 ## 📷 **Screenshots**
 <img loading="lazy" alt="Screenshot #1" src="https://res.cloudinary.com/omzi/image/upload/v1620274341/github/django-blog/screenshot-01-min_xgzoum.png">
@@ -93,7 +84,7 @@ Enter the command to activate the virtual environment for the project:
 ```shell
 blog\scripts\activate
 ```
-After that, install this projects dependencies by entering the command:
+After that, install this project's dependencies by entering the command:
 ```shell
 pip install -r requirements.txt
 ```
@@ -138,6 +129,10 @@ After you're done setting your environment variables, migrate the models to crea
 ```shell
 python manage.py migrate
 ```
+Also, don't forget to create a superuser account using:
+```shell
+python manage.py createsuperuser
+```
 To run the project locally, enter the command:
 ```shell
 python manage.py runserver
@@ -164,7 +159,7 @@ If you have questions, feedback or anything to share, you can get in touch via:
 <br>
 
 ## ❌ **Disclaimer**
-This project is my submission to one of the tasks in the [Zuri Internship](https://internship.zuri.team/), '21 cohort. It is **NOT** production-ready!
+This project is my submission to one of the tasks in the [Zuri Internship](https://internship.zuri.team/), '21 cohort. It is **NOT** yet production-ready!
 
 <br>
 
