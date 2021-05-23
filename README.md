@@ -142,6 +142,15 @@ Open up your browser and visit the URL: `http://127.0.0.1:8000/`.
 <br>
 
 
+## ⚗ **Tests**
+To run the tests, ensure you're in the project's root folder, i.e, the folder where `manage.py` is located. Then run the command:
+```shell
+python manage.py test home
+```
+
+<br>
+
+
 ## 👥 **Contribution**
 If you want to contribute to the project, please [make a pull request](https://help.github.com/en/articles/creating-a-pull-request) or send your files to me via e-mail [obiohaomezibe@gmail.com](mailto:obiohaomezibe@gmail.com) as an attachment.
 
