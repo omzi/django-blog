@@ -36,13 +36,11 @@
                   {% endif %}
                 </div>
               </div>
-              <div class="text-center mb-2">
-                {% if post.featured_image %}
-                  <img class="blog-cover img-fluid" src="{{ post.featured_image.url }}" alt="post image">
-                {% else %}
-                  <img class="blog-cover img-fluid" src="{% static '' %}images/image-placeholder.jpg" alt="post image">
-                {% endif %}
-              </div>
+              {% if post.featured_image %}
+                <div class="text-center mb-2">
+                  <img loading="lazy" class="blog-cover img-fluid" src="{{ post.featured_image.url }}" alt="post image">
+                </div>
+              {% endif %}
               <div class="blog-content mb-2">
                 <p class="blog-pragraph">
                   {{ post.body|safe }}
@@ -88,7 +86,8 @@
             <div class="post-author-detail mt-4">
               <div class="row no-gutters align-items-center">
                 <div class="col-sm-5 col-md-3">
-                  <div class="author-avatar"><img src="https://pbs.twimg.com/profile_images/1366805399685496841/rb0Sp1Tn_400x400.jpg" alt="avatar"></div>
+                  <div class="author-avatar"><img src="https://avatars.githubusercontent.com/u/34870358" alt="avatar">
+                  </div>
                 </div>
                 <div class="col-sm-7 col-md-9">
                   <div class="author-info">

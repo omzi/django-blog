@@ -11,5 +11,3 @@ urlpatterns = [
     path('reset/confirm/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view( template_name='registration/reset-password-confirm.html' ), name='password_reset_confirm'),
     path('reset/complete/', auth_views.PasswordResetCompleteView.as_view(template_name='registration/reset-password-complete.html'), name='password_reset_complete'),
 ]
-# https://duckduckgo.com/?q=django+project+documentation+generator
-
